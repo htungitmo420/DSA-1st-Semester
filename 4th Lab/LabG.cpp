@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
-using namespace std;
-vector<int> output;
+
+std::vector<int> output;
+
 struct Node {
     int data;
     Node* right;
@@ -122,8 +123,8 @@ void mergeAndRebuild(Node*& rootNiko, Node*& rootStepan) {
     output.clear();
     inOrder(rootNiko);
     for (int i = 0; i < (int)output.size(); i++){
-        cout << output[i];
-        if (i < ((int)output.size() - 1)) cout << " ";
+        std::cout << output[i];
+        if (i < ((int)output.size() - 1)) std::cout << " ";
     }
     std::cout << std::endl;
 }

@@ -1,13 +1,12 @@
 #include <iostream>
-using namespace std;
 
 int main() {
     int n,k;
-    cin >> n >> k;
+    std::cin >> n >> k;
 
     int* arr = new int[n];
     for (int i =0; i < n; i++) {
-        cin >> arr[i];
+        std::cin >> arr[i];
     }
 
     k = k % n;
@@ -17,7 +16,7 @@ int main() {
     }
 
     for (int i = 0; i < n; i++) {
-        cout << arr[(i + n - k) % n] << " ";
+        std::cout << arr[(i + n - k) % n] << " ";
     }
 
     return 0;

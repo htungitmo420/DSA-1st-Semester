@@ -1,7 +1,5 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
-using namespace std;
 
 void swap(int& a, int& b) {
     int temp = a;
@@ -48,13 +46,13 @@ void quicksort(int arr[], int l, int r) {
 
 int main() {
     int n;
-    cin >> n;
+    std::cin >> n;
 
     int* b = new int[n];
     int* e = new int[n];
 
     for (int i = 0; i < n; i++) {
-        cin >> b[i] >> e[i];
+        std::cin >> b[i] >> e[i];
     }
     srand(time(NULL));
     quicksort(b, 0, n - 1);
@@ -66,7 +64,7 @@ int main() {
 
     for (int i = 1; i < n; i++) {
         if (b[i] <= end) {
-            end = max(end, e[i]);
+            end = std::max(end, e[i]);
         } else {
             total += end - begin + 1;
             begin = b[i];
@@ -75,8 +73,7 @@ int main() {
     }
 
     total += end - begin + 1;
-    cout << total << endl;
-    delete[] b;
-    delete[] e;
+    std::cout << total << "\n";
+    
     return 0;
 }

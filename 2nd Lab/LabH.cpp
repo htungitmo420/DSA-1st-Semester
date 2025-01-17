@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
-using namespace std;
+
 
 void swap(int &a, int &b) {
     int temp = a;
@@ -33,11 +32,11 @@ void quicksort(int arr[], int l, int r) {
 
 int main() {
     int n;
-    cin >> n;
+    std::cin >> n;
     int* arr = new int[n];
 
     for (int i = 0;i < n; i++) {
-        cin >> arr[i];
+        std::cin >> arr[i];
         arr[i] = arr[i] + i; 
     }
 
@@ -55,11 +54,10 @@ int main() {
     }
     if (quicksorted) {
         for (int i = 0;i < n; i++) {
-            cout << arr[i] << " ";
+            std::cout << arr[i] << " ";
         }
     } else {
-        cout << ":(";
+        std::cout << ":(";
     }
     return 0;
-    delete [] arr;
 }

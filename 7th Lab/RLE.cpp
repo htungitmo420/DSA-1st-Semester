@@ -1,14 +1,14 @@
+//Code mẫu tham khảo
 #include <iostream>
 #include <string>
 #include <vector>
 
 using namespace std;
 
-// Run-Length Encoding
 string rle_encode(const string& input) {
     string encoded_string = "";
     if (input.empty()) {
-        return encoded_string; // Handle empty input
+        return encoded_string;
     }
 
     char current_char = input[0];
@@ -18,17 +18,16 @@ string rle_encode(const string& input) {
         if (input[i] == current_char) {
             count++;
         } else {
-            encoded_string += to_string(count) + current_char; // Append count and char
+            encoded_string += to_string(count) + current_char;
             current_char = input[i];
             count = 1;
         }
     }
-    encoded_string += to_string(count) + current_char; // Append for the last run
+    encoded_string += to_string(count) + current_char;
 
     return encoded_string;
 }
 
-// Run-Length Decoding
 string rle_decode(const string& input) {
     string decoded_string = "";
     string count_str = "";
@@ -37,11 +36,11 @@ string rle_decode(const string& input) {
         if (isdigit(c)) {
             count_str += c;
         } else {
-            int count = stoi(count_str); // Convert string to integer
+            int count = stoi(count_str); 
             for (int i = 0; i < count; ++i) {
                 decoded_string += c;
             }
-            count_str = ""; // Reset count string for next run
+            count_str = "";
         }
     }
     return decoded_string;

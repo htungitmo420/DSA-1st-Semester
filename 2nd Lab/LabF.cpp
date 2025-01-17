@@ -1,23 +1,22 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
-using namespace std;
+#define int long long
 
-long partition(long arr[], long left, long mid, long right) {
-    long count = 0;
-    long n1 = mid - left + 1;
-    long n2 = right - mid;
+int partition(int arr[], int left, int mid, int right) {
+    int count = 0;
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
 
 
-    long* leftArr = new long[n1];
-    long* rightArr = new long[n2];
+    int* leftArr = new int[n1];
+    int* rightArr = new int[n2];
 
-    for (long i = 0; i < n1; i++)
+    for (int i = 0; i < n1; i++)
         leftArr[i] = arr[left + i];
-    for (long i = 0; i < n2; i++)
+    for (int i = 0; i < n2; i++)
         rightArr[i] = arr[mid + 1 + i];
 
-    long i = 0, j = 0, k = left;
+    int i = 0, j = 0, k = left;
     while (i < n1 && j < n2) {
         if (leftArr[i] <= rightArr[j]) {
             arr[k] = leftArr[i];
@@ -45,10 +44,10 @@ long partition(long arr[], long left, long mid, long right) {
     return count;
 }
 
-long mergesort(long arr[], long left, long right) {
-    long count = 0;
+int mergesort(int arr[], int left, int right) {
+    int count = 0;
     if (left < right) {
-        long mid = left + (right - left) / 2;
+        int mid = left + (right - left) / 2;
         count += mergesort(arr, left, mid);
         count += mergesort(arr, mid + 1, right);
         count += partition(arr, left, mid, right);
@@ -57,17 +56,16 @@ long mergesort(long arr[], long left, long right) {
 }
 
 int main() {
-    long n;
-    cin >> n;
-    long* arr = new long[n];
-    for (long i = 0; i < n; i++) {
-        cin >> arr[i];
+    int n;
+    std::cin >> n;
+    int* arr = new int[n];
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i];
     }
 
     srand(time(NULL));
-    long count = mergesort(arr, 0, n - 1);
-    cout << count << endl;
-
-    delete[] arr;
+    int count = mergesort(arr, 0, n - 1);
+    std::cout << count << std::endl;
+    
     return 0;
 }

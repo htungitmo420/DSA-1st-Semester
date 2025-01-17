@@ -1,10 +1,10 @@
+//Code mẫu tham khảo
 #include <iostream>
 #include <vector>
 #include <cmath>
 
 using namespace std;
 
-// Hàm tính số lượng bit kiểm tra cần thiết
 int calculateParityBits(int m) {
     int r = 0;
     while (pow(2, r) < m + r + 1) {
@@ -13,26 +13,22 @@ int calculateParityBits(int m) {
     return r;
 }
 
-// Hàm chèn các bit kiểm tra vào dữ liệu ban đầu
 vector<int> insertParityBits(const vector<int>& data, int r) {
     int m = data.size();
     int totalBits = m + r;
     vector<int> encoded(totalBits, 0);
 
-    int j = 0; // Index for data bits
+    int j = 0; 
     for (int i = 1; i <= totalBits; i++) {
         if ((i & (i - 1)) == 0) {
-            // Vị trí là lũy thừa của 2 -> bit kiểm tra
             encoded[i - 1] = 0;
         } else {
-            // Vị trí khác -> gán dữ liệu gốc
             encoded[i - 1] = data[j++];
         }
     }
     return encoded;
 }
 
-// Hàm tính giá trị các bit kiểm tra
 void calculateParityBits(vector<int>& encoded) {
     int totalBits = encoded.size();
     for (int i = 0; (1 << i) <= totalBits; i++) {
@@ -48,7 +44,6 @@ void calculateParityBits(vector<int>& encoded) {
     }
 }
 
-// Hàm kiểm tra và sửa lỗi
 int checkAndCorrectError(vector<int>& received) {
     int totalBits = received.size();
     int errorPosition = 0;
@@ -68,7 +63,6 @@ int checkAndCorrectError(vector<int>& received) {
     }
 
     if (errorPosition > 0) {
-        // Sửa lỗi bằng cách đảo bit tại vị trí lỗi
         received[errorPosition - 1] ^= 1;
     }
 
@@ -76,7 +70,6 @@ int checkAndCorrectError(vector<int>& received) {
 }
 
 int main() {
-    // Nhập dữ liệu gốc
     cout << "Nhap so bit du lieu: ";
     int m;
     cin >> m;
@@ -87,10 +80,8 @@ int main() {
         cin >> data[i];
     }
 
-    // Tính số lượng bit kiểm tra
     int r = calculateParityBits(m);
 
-    // Chèn và tính giá trị các bit kiểm tra
     vector<int> encoded = insertParityBits(data, r);
     calculateParityBits(encoded);
 
@@ -100,14 +91,12 @@ int main() {
     }
     cout << endl;
 
-    // Nhập chuỗi dữ liệu nhận được
     cout << "\nNhap chuoi dy lieu nhan đưoc (có thể chứa lỗi): ";
     vector<int> received(encoded.size());
     for (int i = 0; i < received.size(); i++) {
         cin >> received[i];
     }
 
-    // Kiểm tra và sửa lỗi
     int errorPosition = checkAndCorrectError(received);
 
     if (errorPosition == 0) {

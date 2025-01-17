@@ -1,9 +1,8 @@
 #include <iostream>
-using namespace std;
 
 void AntiQuickSort(int n) {
     if (n == 1) {
-        cout << "1" << endl;
+        std::cout << "1" << "\n";
         return;
     }
     
@@ -19,15 +18,15 @@ void AntiQuickSort(int n) {
     }
 
     for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
+        std::cout << arr[i] << " ";
     }
 }
 
 int main() {
     int n;
-    cin >> n;
+    std::cin >> n;
     int* arr = new int[n];
     AntiQuickSort(n);
-    delete[] arr;
+
     return 0;
 }

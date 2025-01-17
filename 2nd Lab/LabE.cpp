@@ -1,7 +1,5 @@
 #include <iostream>
-#include <cstdlib> //rand()
-#include <ctime> //time()
-using namespace std;
+#include <cstdlib>
 
 void swap(int &a, int &b) {
     int temp = a;
@@ -9,12 +7,12 @@ void swap(int &a, int &b) {
     b = temp;
 }
 
-long randompivot(long l, long r) { //function random pivot [l;r]
+long randompivot(long l, long r) {
     return l + rand() % (r - l + 1); 
 }
 
 long hoare(long arr[], long l, long r) {
-    long pivotindex = randompivot(l, r); // Select random pivot
+    long pivotindex = randompivot(l, r);
     long pivot = arr[pivotindex];
     long i = l - 1;
     long j = r + 1;
@@ -29,7 +27,7 @@ long hoare(long arr[], long l, long r) {
         } while (arr[i] < pivot);
 
         if (i < j) {
-            swap(arr[i], arr[j]);
+            std::swap(arr[i], arr[j]);
         } else
             return j;
     }
@@ -45,11 +43,11 @@ void quicksort(long arr[], long l, long r) {
 
 int main() {
     long n;
-    cin >> n;
+    std::cin >> n;
     long* arr = new long[n];
 
     for (long i = 0; i < n; i++) {
-        cin >> arr[i];
+        std::cin >> arr[i];
     }
     srand(time(NULL));
     quicksort(arr,0,n-1);
@@ -80,9 +78,6 @@ int main() {
     for (long k = 0; k < n; k += 2){
         sum += saveplace[k] * saveplace[k + 1];
     }
-    cout << sum;
-    delete[] arr;
-    delete[] saveplace;
-    
+    std::cout << sum;   
     return 0;
 }

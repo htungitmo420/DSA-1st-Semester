@@ -1,3 +1,4 @@
+//Code mẫu tham khảo
 #include <iostream>
 #include <string>
 #include <queue>
@@ -5,7 +6,6 @@
 
 using namespace std;
 
-// Structure to represent a node in the Huffman tree
 struct Node {
     char ch;
     int freq;
@@ -14,7 +14,6 @@ struct Node {
 
     Node(char c, int f) : ch(c), freq(f), left(nullptr), right(nullptr) {}
 
-    // Custom comparison operator for priority queue (min-heap)
     struct compare {
         bool operator()(Node* l, Node* r) {
             return l->freq > r->freq;
@@ -22,16 +21,13 @@ struct Node {
     };
 };
 
-// Function to build the Huffman tree
 Node* buildHuffmanTree(const vector<pair<char, int>>& freqVec) {
     priority_queue<Node*, vector<Node*>, Node::compare> pq;
 
-    // Create leaf nodes for each character
     for (const auto& pair : freqVec) {
         pq.push(new Node(pair.first, pair.second));
     }
 
-    // Build the tree
     while (pq.size() > 1) {
         Node* left = pq.top(); pq.pop();
         Node* right = pq.top(); pq.pop();
@@ -45,12 +41,10 @@ Node* buildHuffmanTree(const vector<pair<char, int>>& freqVec) {
     return pq.top();
 }
 
-// Recursive function to generate Huffman codes
 void generateHuffmanCodes(Node* root, string str, vector<pair<char, string>>& huffmanCode) {
     if (!root) return;
 
     if (!root->left && !root->right) {
-        // Find the character and update its code, or add a new entry.
         bool found = false;
         for (auto& p : huffmanCode) {
             if (p.first == root->ch) {
@@ -63,22 +57,20 @@ void generateHuffmanCodes(Node* root, string str, vector<pair<char, string>>& hu
            huffmanCode.push_back({root->ch, str});
         }
 
-        return; // Important: Return after finding a leaf node
+        return;
     }
 
     generateHuffmanCodes(root->left, str + "0", huffmanCode);
     generateHuffmanCodes(root->right, str + "1", huffmanCode);
 }
 
-
-// Function to encode a string using Huffman codes
 string encode(const string& text, const vector<pair<char, string>>& huffmanCode) {
     string encodedText = "";
     for (char ch : text) {
         for(const auto& p : huffmanCode){
             if(p.first == ch){
                 encodedText += p.second;
-                break; // important for efficiency.
+                break;
             }
         }
     }

@@ -1,7 +1,5 @@
 #include <iostream>
-#include <cstdlib> //rand()
-#include <ctime> //time()
-using namespace std;
+#include <cstdlib>
 
 void Swap(int& a, int& b) {
     int temp = a;
@@ -9,11 +7,11 @@ void Swap(int& a, int& b) {
     b = temp;
 }
 
-int RandomPivot(int l, int r) { //random pivot [l;r]
+int RandomPivot(int l, int r) {
     return l + rand() % (r - l + 1);
 }
 
-int Partition(int arr[], int l, int r) { //hoare
+int Partition(int arr[], int l, int r) {
     int PivotIndex = RandomPivot(l, r);
     int Pivot = arr[PivotIndex];
     int i = l - 1;
@@ -29,7 +27,7 @@ int Partition(int arr[], int l, int r) { //hoare
         } while (arr[j] > Pivot);
 
         if (i < j) {
-            swap(arr[i], arr[j]);
+            std::swap(arr[i], arr[j]);
         } else 
         return j;
     }
@@ -45,19 +43,19 @@ void QuickSort(int arr[], int l, int r) {
 
 int main() {
     int n;
-    cin >> n;
+    std::cin >> n;
     int* arr = new int[n];
 
     for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+        std::cin >> arr[i];
     }
 
     srand(time(NULL));
     QuickSort(arr, 0, n - 1);
 
     for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
+        std::cout << arr[i] << " ";
     }
-    delete [] arr;
+
     return 0;
 }

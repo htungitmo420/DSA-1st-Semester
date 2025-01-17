@@ -1,8 +1,5 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
-
-using namespace std;
 
 void swap(int& a, int& b) {
     int temp = a;
@@ -47,9 +44,9 @@ void quickselect(int* arr, int left, int right, int k) {
 }
 
 int main() {
-    int n, k, A, B, C, a1, a2; //a1 = i-2, a2 = i-1
-    cin >> n >> k;
-    cin >> A >> B >> C >> a1 >> a2;
+    int n, k, A, B, C, a1, a2;
+    std::cin >> n >> k;
+    std::cin >> A >> B >> C >> a1 >> a2;
     int* arr = new int[n];
     arr[0] = a1;
     arr[1] = a2;
@@ -64,7 +61,7 @@ int main() {
     for (int i = n - k; i < n; ++i) {
         result ^= arr[i];
     }
-    cout << result << endl;
+    std::cout << result << "\n";
 
     return 0;
 }
